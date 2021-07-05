@@ -3,20 +3,32 @@ import java.util.Scanner;
 public class BankingApplication {
 
 	public static void main(String[] args) {
-		BankAccount obj = new BankAccount("Andasan", "citi00001");
-		obj.showMenu();
+		BankAccount<String, String> account = new BankAccount<>("Andasan", "citi00001");
+		System.out.println("Welcome " + account.getCustomerName());
+		System.out.println("Your ID is " + account.getCustomerId());
+		System.out.println("\n");
+
+		account.showMenu();
 	}
 }
 
-class BankAccount {
+class BankAccount<s1,s2> {
 	int balance;
 	int previousTransaction;
-	String customerName;
-	String customerId;
+	private final s1 customerName;
+	private final s2 customerId;
 
-	BankAccount(String customerName, String customerId) {
+	BankAccount(s1 customerName, s2 customerId) {
 		this.customerName = customerName;
 		this.customerId = customerId;
+	}
+
+	public s1 getCustomerName() {
+		return customerName;
+	}
+
+	public s2 getCustomerId() {
+		return customerId;
 	}
 
 	void deposit(int amount) {
@@ -67,10 +79,6 @@ class BankAccount {
 
 		char option = '\0';
 		Scanner scanner = new Scanner(System.in);
-
-		System.out.println("Welcome " + customerName);
-		System.out.println("Your ID is " + customerId);
-		System.out.println("\n");
 
 		do {
 			System.out.println("=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=");
